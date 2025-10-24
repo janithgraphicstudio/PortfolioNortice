@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Janith Graphic Studio Portfolio has moved to a new website.">
+    <title>Portfolio Update | Janith Graphic Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* CSS Styles */
+        :root {
+            --bg-color: #121212;
+            --primary-color: #0059ff; 
+            --secondary-color: #4708bb;
+            --card-bg-color: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-secondary-color: #a0a0a0;
+            --border-color: #333;
+            --card-hover-shadow: 0 8px 30px rgba(84, 11, 179, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        html, body {
+            max-width: 100%;
+            overflow: hidden; /* Page should not scroll */
+        }
+        
+        /* --- Welcome Popup Styles (Adapted) --- */
+        /* This popup will be always visible */
+        .intro-popup { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.8); 
+            backdrop-filter: blur(5px); 
+            z-index: 10000; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px;
+        }
+        
+        .popup-card { 
+            position: relative; 
+            background: #0f0f0f; 
+            padding: 30px; 
+            padding-top: 80px; 
+            border-radius: 25px; 
+            text-align: center; 
+            max-width: 450px; /* Slightly wider for new text */
+            width: 90%; 
+            border: 1px solid #333; 
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(70, 70, 200, 0.2); 
+            transform: scale(1); 
+            animation: popup-appear 0.4s 0.2s ease-out forwards; 
+        }
+
+        @keyframes popup-appear { 
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .popup-wings { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -65%); 
+            width: 150%; 
+            z-index: -1; 
+            opacity: 0.8; 
+        }
+
+        .popup-wings img { width: 100%; }
+
+        .profile-image-wrapper { 
+            position: absolute; 
+            top: 0; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+        }
+
+        .profile-image { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            border: 5px solid #1A1A1A; 
+            background-color: #1A1A1A; 
+        }
+
+        .verified-badge { 
+            position: absolute; 
+            bottom: 5px; 
+            right: 5px; 
+            width: 30px; 
+            height: 30px; 
+            background-color: #1DA1F2; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: white; 
+            font-size: 1rem; 
+            border: 2px solid #1A1A1A; 
+        }
+
+        .intro-greeting { 
+            color: #a0a0a0; 
+            font-size: 1rem; 
+            margin: 0; 
+        }
+
+        .popup-card h2 { 
+            color: #ffffff; 
+            font-size: 2.2rem; 
+            margin: 5px 0 20px 0; 
+        }
+
+        .intro-details { 
+            color: #a0a0a0; 
+            line-height: 1.6; 
+            margin-bottom: 30px; 
+        }
+
+        .intro-details p { 
+            margin: 0; 
+            font-size: 1.1rem; 
+        }
+
+        /* This is now an <a> tag, styled as a button */
+        .portfolio-button { 
+            display: inline-block; 
+            padding: 12px 35px; 
+            background-color: #5D26C1; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+        }
+
+        .portfolio-button:hover { 
+            background-color: #a026c1; 
+            transform: scale(1.05); 
+            box-shadow: 0 5px 15px rgba(93, 38, 193, 0.4); 
+        }
+
+        /* --- Aurora Background --- */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            filter: blur(100px);
+        }
+
+        .aurora-bg .aurora-dot {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .aurora-bg .aurora-dot:nth-child(1) {
+            top: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(0, 170, 255, 0.4);
+            animation: float 20s infinite alternate;
+        }
+
+        .aurora-bg .aurora-dot:nth-child(2) {
+            top: 40%;
+            left: 60%;
+            width: 600px;
+            height: 600px;
+            background: rgba(170, 0, 255, 0.3);
+            animation: float 25s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            100% { transform: translateY(100px) translateX(-100px) rotate(180deg); }
+        }
+
+        /* --- tsParticles Container Style --- */
+        #tsparticles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* --- Preloader Styles --- */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.7s ease, visibility 0.7s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #444;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive scaling for popup card on small screens */
+        @media (max-width: 480px) {
+            .popup-card h2 {
+                font-size: 1.8rem;
+            }
+            .intro-details p {
+                font-size: 0.95rem;
+            }
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            .popup-card {
+                padding-top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preloader" id="preloader">
+        <div class="spinner"></div>
+    </div>
+    
+    <div id="tsparticles"></div>
+    <div class="aurora-bg">
+        <div class="aurora-dot"></div>
+        <div class="aurora-dot"></div>
+    </div>
+    
+    <div class="intro-popup" id="intro-popup">
+        <div class="popup-card">
+            <div class="popup-wings"><img src="wings.png" alt="Colorful Wings"></div>
+            <div class="profile-image-wrapper">
+                <img src="Profile.png" alt="Profile" class="profile-image">
+                <div class="verified-badge"><i class="fas fa-check"></i></div>
+            </div>
+            
+            <p class="intro-greeting">IMPORTANT NOTICE</p>
+            <h2>Portfolio page updated!</h2>
+            <div class="intro-details">
+                <p>Our Portfolio and Examples page has been moved to a separate website with a new, more advanced experience.</p>
+                <p style="margin-top: 10px; font-weight: 600; font-size: 1rem; color: var(--text-color);">
+                   Our Portfolio page has been moved to a new, dedicated website.
+                </p>
+            </div>
+            
+            <a href="https://jgslankaportfolio.wuaze.com" target="_blank" class="portfolio-button">
+               VISIT NEW SITE
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.4.0/tsparticles.bundle.min.js"></script>
+
+    <script>
+        // --- Preloader Logic ---
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            window.addEventListener('load', () => {
+                preloader.classList.add('hidden');
+            });
+        }
+
+        // --- tsParticles Initialization ---
+        (async () => {
+          await tsParticles.load({
+            id: "tsparticles",
+            options: {
+              background: {
+                color: {
+                  value: "#121212" // Match background color
+                },
+              },
+              particles: {
+                number: {
+                  value: 160, 
+                  density: {
+                    enable: true,
+                  },
+                },
+                color: {
+                  value: "#666" // Noise color
+                },
+                shape: {
+                  type: "circle",
+                },
+                opacity: {
+                  value: { min: 0.1, max: 0.5 }, 
+                },
+                size: {
+                  value: { min: 1, max: 2.5 }, 
+                },
+                links: {
+                  enable: false, // No links between particles
+                },
+                move: {
+                  enable: true,
+                  speed: 0.5, // Move very slowly
+                  direction: "none",
+                  outModes: {
+                    default: "out",
+                  },
+                },
+              },
+              interactivity: {
+                events: {
+                  onHover: {
+                    enable: true,
+                    mode: "repulse", // Push particles away from cursor
+                  },
+                },
+                modes: {
+                  repulse: {
+                    distance: 60,
+                    duration: 0.4,
+                  },
+                },
+              },
+              detectRetina: true,
+            },
+          });
+        })();
+    </script>
+
+</body>
+</html>
